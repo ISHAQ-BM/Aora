@@ -1,4 +1,4 @@
-import {  StatusBar, StyleSheet, TextInput } from 'react-native'
+import {  Pressable, StatusBar, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 import { Colors } from '@/constants/Colors'
 
@@ -6,6 +6,7 @@ import Logo from '../../assets/images/logo.svg'
 import { ThemedView } from '@/components/ThemedView'
 import { ThemedText } from '@/components/ThemedText'
 import Button from '@/components/Button'
+import { router } from 'expo-router'
 
 const Signup = () => {
   const handleSignup = ()=>{
@@ -50,7 +51,9 @@ const Signup = () => {
         <Button style={styles.button} lightColor='#FF8C00' onPress={handleSignup}><ThemedText style={{fontSize:16}} type='defaultSemiBold'  >Sign Up</ThemedText></Button>
         <ThemedView style={{flexDirection:'row',  gap:4,alignSelf:'center',marginTop:20}}>
             <ThemedText type='default' lightColor='white' darkColor='white'>Already have an account?</ThemedText>
-            <ThemedText type='default' lightColor={Colors.light.primary} darkColor={Colors.light.primary}>Login</ThemedText>
+            <Pressable onPress={()=>router.back()}>
+              <ThemedText type='default' lightColor={Colors.light.primary} darkColor={Colors.light.primary}>Login</ThemedText>
+            </Pressable>
         </ThemedView>
     </ThemedView>
     
