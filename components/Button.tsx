@@ -1,4 +1,4 @@
-import {PressableProps, Pressable } from 'react-native'
+import {PressableProps, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { ThemedText } from './ThemedText';
@@ -12,7 +12,7 @@ const Button = ({ style,onPress, lightColor, darkColor, ...rest }: ThemedButtonP
     const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
   return (
-    <Pressable style={[{ backgroundColor }, style]} {...rest} onPress={onPress} />
+    <TouchableOpacity style={[{ backgroundColor }, style]} {...rest} onPress={onPress} />
   )
 }
 

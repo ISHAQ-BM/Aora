@@ -9,7 +9,7 @@ import { router } from 'expo-router'
 
 const index = () => {
     const handleLogin = ()=>{
-    
+    router.navigate('/(tabs)')
   }
     const [password, onChangePassword] = React.useState('');
     const [email, onChangeEmail] = React.useState('');
