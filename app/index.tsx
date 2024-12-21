@@ -44,9 +44,8 @@ const index = () => {
         
       </ThemedView>
       <ThemedText type='default' lightColor='#CDCDE0' darkColor='#CDCDE0' style={{textAlign:'center',marginTop:24}}>Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Aora</ThemedText>
-      <Button style={styles.button} text='Continue with Email' textStyle={{fontSize:16}} textType='defaultSemiBold' lightColor='#FF8C00' onPress={() =>router.push('/signin')}>
-        <ThemedText style={{fontSize:16}} type='defaultSemiBold'  >Continue with Email</ThemedText>
-        </Button>
+      <Button style={styles.button} text='Continue with Email' textStyle={{fontSize:16}} textType='defaultSemiBold' lightColor='#FF8C00' onPress={() =>router.push('/login')} />
+        
 <StatusBar backgroundColor='#161622' style='light'/>
 
     </ThemedView>

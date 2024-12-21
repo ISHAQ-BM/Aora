@@ -5,15 +5,14 @@ import { Colors } from '@/constants/Colors'
 import { ThemedView } from '@/components/ThemedView'
 import { ThemedText } from '@/components/ThemedText'
 import Button from '@/components/Button'
-import { router } from 'expo-router'
+import { Link, router } from 'expo-router'
 
-const index = () => {
-    const handleLogin = ()=>{
+const Login = () => {
+  const handleLogin = ()=>{
     router.navigate('/(tabs)')
   }
-    const [password, onChangePassword] = React.useState('');
-    const [email, onChangeEmail] = React.useState('');
-  return (
+    const [form, setForm] = React.useState({email:'',password:''});
+    return (
     <ThemedView style={styles.container}>
         <ThemedView style={styles.logoContainer}>
             <Logo width={50} height={50}/>
@@ -23,34 +22,34 @@ const index = () => {
       <ThemedText type='subtitle' lightColor='white' darkColor='white' style={{marginTop:28}}>Email</ThemedText>
       <TextInput
         style={styles.input}
-        onChangeText={text => onChangeEmail(text)}
-        value={email}
+        onChangeText={text => setForm({...form,email:text})}
+        value={form.email}
         selectionColor={Colors.light.primary}
         inputMode="email"
         />
       <ThemedText type='subtitle' lightColor='white' darkColor='white' style={{marginTop:24}}>Password</ThemedText>
       <TextInput
         style={styles.input}
-        onChangeText={text => onChangePassword(text)}
-        value={password}
+        onChangeText={text => setForm({...form,password:text})}
+        value={form.password}
         inputMode="text"
         selectionColor={Colors.light.primary}
         secureTextEntry={true}
        />
        <ThemedText type='default' lightColor='white' darkColor='white' style={{textAlign:'right',marginTop:16}}>Forgot password</ThemedText>
-       <Button style={styles.button} lightColor='#FF8C00' onPress={handleLogin}><ThemedText style={{fontSize:16}} type='defaultSemiBold'  >Login</ThemedText></Button>
+       <Button style={styles.button} text='Login' textStyle={{fontSize:16}} textType='defaultSemiBold' lightColor='#FF8C00' onPress={handleLogin} />
+      
        <ThemedView style={{flexDirection:'row',  gap:4,alignSelf:'center',marginTop:20}}>
             <ThemedText type='default' lightColor='white' darkColor='white'>Don’t have an account?</ThemedText>
-            <Pressable onPress={()=>router.navigate('/signup')}>
-                <ThemedText type='default' lightColor={Colors.light.primary} darkColor={Colors.light.primary}>Signup</ThemedText>
-            </Pressable>
+            <Link href='/signup'><ThemedText type='default' lightColor={Colors.light.primary} darkColor={Colors.light.primary}>Signup</ThemedText>
+            </Link>
             
        </ThemedView>
     </ThemedView>
   )
 }
 
-export default index
+export default Login
 
 const styles = StyleSheet.create({
     container:{

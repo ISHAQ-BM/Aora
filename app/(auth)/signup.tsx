@@ -6,16 +6,14 @@ import Logo from '../../assets/images/logo.svg'
 import { ThemedView } from '@/components/ThemedView'
 import { ThemedText } from '@/components/ThemedText'
 import Button from '@/components/Button'
-import { router } from 'expo-router'
+import { Link, router } from 'expo-router'
 
 const Signup = () => {
   const handleSignup = ()=>{
-    
+    router.navigate('/(tabs)')
   }
-    const [password, onChangePassword] = React.useState('');
-    const [email, onChangeEmail] = React.useState('');
-     const [username, onChangeUsername] = React.useState('');
-  return (
+    const [form, setForm] = React.useState({email:'',password:'',username:''});
+      return (
     <ThemedView style={styles.container}>
         <ThemedView style={styles.logoContainer}>
             <Logo width={50} height={50}/>
@@ -25,16 +23,16 @@ const Signup = () => {
         <ThemedText type='subtitle' lightColor='white' darkColor='white' style={{marginTop:20}} >Username</ThemedText>
         <TextInput
         style={styles.input}
-        onChangeText={text => onChangeUsername(text)}
-        value={username}
+        onChangeText={text => setForm({...form,username:text})}
+        value={form.username}
         selectionColor={Colors.light.primary}
         inputMode="text"
         />
         <ThemedText type='subtitle' lightColor='white' darkColor='white' style={{marginTop:12}}>Email</ThemedText>
         <TextInput
         style={styles.input}
-        onChangeText={text => onChangeEmail(text)}
-        value={email}
+        onChangeText={text => setForm({...form,email:text})}
+        value={form.email}
         inputMode="text"
         selectionColor={Colors.light.primary}
     
@@ -42,18 +40,18 @@ const Signup = () => {
         <ThemedText type='subtitle' lightColor='white' darkColor='white' style={{marginTop:12}}>Password</ThemedText>
         <TextInput
         style={styles.input}
-        onChangeText={text => onChangePassword(text)}
-        value={password}
+        onChangeText={text => setForm({...form,password:text})}
+        value={form.password}
         inputMode="text"
         selectionColor={Colors.light.primary}
         secureTextEntry={true}
        />
-        <Button style={styles.button} lightColor='#FF8C00' onPress={handleSignup}><ThemedText style={{fontSize:16}} type='defaultSemiBold'  >Sign Up</ThemedText></Button>
-        <ThemedView style={{flexDirection:'row',  gap:4,alignSelf:'center',marginTop:20}}>
+       <Button style={styles.button} text='Sign Up' textStyle={{fontSize:16}} textType='defaultSemiBold' lightColor='#FF8C00' onPress={handleSignup} />
+      
+    <ThemedView style={{flexDirection:'row',  gap:4,alignSelf:'center',marginTop:20}}>
             <ThemedText type='default' lightColor='white' darkColor='white'>Already have an account?</ThemedText>
-            <Pressable onPress={()=>router.back()}>
-              <ThemedText type='default' lightColor={Colors.light.primary} darkColor={Colors.light.primary}>Login</ThemedText>
-            </Pressable>
+            <Link href='/login'><ThemedText type='default' lightColor={Colors.light.primary} darkColor={Colors.light.primary}>Login</ThemedText>
+                        </Link>
         </ThemedView>
     </ThemedView>
     
