@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { Colors } from '@/constants/Colors'
-import { FontAwesome } from '@expo/vector-icons'
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const TabLayout = () => {
@@ -18,7 +17,7 @@ const TabLayout = () => {
         } 
     >
         <Tabs.Screen 
-            name='index'   
+            name='home'   
             options={
                 {
                     title:'Home',
@@ -49,10 +48,10 @@ const TabLayout = () => {
             }
         />
         <Tabs.Screen 
-            name='saved'   
+            name='bookmark'   
             options={
                 {
-                    title:'Saved',
+                    title:'Bookmark',
                     tabBarIcon:({color}) => <Ionicons size={24} name='bookmark' color={color} />,
                     headerShown:false
                 }

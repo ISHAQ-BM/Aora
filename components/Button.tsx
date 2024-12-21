@@ -12,7 +12,11 @@ const Button = ({ style,onPress, lightColor, darkColor, ...rest }: ThemedButtonP
     const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
   return (
-    <TouchableOpacity style={[{ backgroundColor }, style]} {...rest} onPress={onPress} />
+    <TouchableOpacity style={[{ backgroundColor }, style]} {...rest} onPress={onPress} >
+      <ThemedText>
+        
+      </ThemedText>
+    </TouchableOpacity>
   )
 }
 

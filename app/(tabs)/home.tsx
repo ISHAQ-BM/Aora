@@ -64,7 +64,7 @@ const Home = () => {
       <FlatList 
         data={data}
         renderItem={({item}) =><Post post={item}/>}
-        keyExtractor={item => item.id}
+        
       />
       
       

@@ -1,4 +1,4 @@
-import {  StyleSheet, StatusBar } from 'react-native'
+import {  StyleSheet } from 'react-native'
 import React from 'react'
 import { ThemedText } from '@/components/ThemedText'
 import Button from '@/components/Button'
@@ -8,14 +8,14 @@ import OnboardingImg from '../assets/images/Onboarding-img.svg'
 import Svg, { Path } from 'react-native-svg'
 import { Colors } from '@/constants/Colors'
 import { router } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
 
 const index = () => {
 
-  const handleLoginWithEmail = ()=>{
-    router.navigate('/(auth)')
-  }
+  
   return (
     <ThemedView style={styles.container}>
+    <StatusBar backgroundColor='#161622' style='light'/>
       <ThemedView style={styles.logoContainer}>
         <Logo width={100} height={78}/>
         <ThemedText type='title' lightColor='white' darkColor='white'>Aora</ThemedText>
@@ -44,8 +44,10 @@ const index = () => {
         
       </ThemedView>
       <ThemedText type='default' lightColor='#CDCDE0' darkColor='#CDCDE0' style={{textAlign:'center',marginTop:24}}>Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Aora</ThemedText>
-      <Button style={styles.button} lightColor='#FF8C00' onPress={handleLoginWithEmail}><ThemedText style={{fontSize:16}} type='defaultSemiBold'  >Continue with Email</ThemedText></Button>
-
+      <Button style={styles.button} text='Continue with Email' textStyle={{fontSize:16}} textType='defaultSemiBold' lightColor='#FF8C00' onPress={() =>router.push('/signin')}>
+        <ThemedText style={{fontSize:16}} type='defaultSemiBold'  >Continue with Email</ThemedText>
+        </Button>
+<StatusBar backgroundColor='#161622' style='light'/>
 
     </ThemedView>
   )
