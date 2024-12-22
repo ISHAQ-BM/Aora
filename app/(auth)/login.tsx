@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, StyleSheet, TextInput, Pressable } from 'react-native'
+import { View, Text, StatusBar, StyleSheet, TextInput, Pressable, Alert } from 'react-native'
 import React from 'react'
 import Logo from '../../assets/images/logo.svg'
 import { Colors } from '@/constants/Colors'
@@ -6,10 +6,20 @@ import { ThemedView } from '@/components/ThemedView'
 import { ThemedText } from '@/components/ThemedText'
 import Button from '@/components/Button'
 import { Link, router } from 'expo-router'
+import { login } from '@/lib/appwrite'
 
 const Login = () => {
-  const handleLogin = ()=>{
-    router.replace('/home')
+  const handleLogin = async ()=>{
+     if(!form.email || !form.password){
+          Alert.alert('Error','Please fill in all the fields');
+        } else{
+          try {
+          const result = await login(form.email,form.password)
+           router.replace('/home')
+        } catch (error) {
+          Alert.alert('Error',error.message)
+        }
+        }
   }
     const [form, setForm] = React.useState({email:'',password:''});
     return (
