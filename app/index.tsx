@@ -7,13 +7,16 @@ import Logo from '../assets/images/logo.svg'
 import OnboardingImg from '../assets/images/Onboarding-img.svg'
 import Svg, { Path } from 'react-native-svg'
 import { Colors } from '@/constants/Colors'
-import { router } from 'expo-router'
+import { Redirect, router } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
+import { GlobalContextType, useGlobalContext } from '@/context/GlobalProvider'
 
 const index = () => {
 
-  
-  return (
+  const {isLoggedIn} = useGlobalContext() as GlobalContextType;
+
+  if (isLoggedIn) return <Redirect href='/home' />
+    return ( 
     <ThemedView style={styles.container}>
     <StatusBar backgroundColor='#161622' style='light'/>
       <ThemedView style={styles.logoContainer}>

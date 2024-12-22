@@ -7,14 +7,19 @@ import { ThemedText } from '@/components/ThemedText'
 import Button from '@/components/Button'
 import { Link, router } from 'expo-router'
 import { login } from '@/lib/appwrite'
+import { GlobalContextType, useGlobalContext } from '@/context/GlobalProvider'
 
 const Login = () => {
+  const {setUser,setIsLoggedIn} = useGlobalContext() as GlobalContextType;
+    
   const handleLogin = async ()=>{
      if(!form.email || !form.password){
           Alert.alert('Error','Please fill in all the fields');
         } else{
           try {
           const result = await login(form.email,form.password)
+          setIsLoggedIn(true);
+          setUser(result);
            router.replace('/home')
         } catch (error) {
           Alert.alert('Error',error.message)
