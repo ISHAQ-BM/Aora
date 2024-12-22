@@ -9,7 +9,7 @@ import { Link, router } from 'expo-router'
 
 const Login = () => {
   const handleLogin = ()=>{
-    router.navigate('/(tabs)')
+    router.replace('/home')
   }
     const [form, setForm] = React.useState({email:'',password:''});
     return (
