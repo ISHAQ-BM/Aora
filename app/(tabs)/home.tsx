@@ -1,48 +1,31 @@
-import { FlatList, StatusBar, StyleSheet, TextInput, View } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet, TextInput,StatusBar as RNStatusBar, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { ThemedView } from '@/components/ThemedView'
 import Logo from '@/assets/images/logo.svg'
 import { ThemedText } from '@/components/ThemedText'
 import { Ionicons } from '@expo/vector-icons'
 import { Colors } from '@/constants/Colors'
 import Post from '@/components/Post'
+import { StatusBar } from 'expo-status-bar'
+import { getAllPosts } from '@/lib/appwrite'
+import { Models } from 'react-native-appwrite'
+import useAppwrite from '@/lib/useAppwrite'
+import Trending from '@/components/Trending'
 
-const data = [
-  {
-    id:1,
-    userProfileImage:'@/assets/images/favicon.png',
-    userName:'ishaq belhadj',
-    title:'aiof whfewo fowfw of wfwe',
-    videoUrl:'@/assets/images/video.png'
-  },
-  {
-    id:2,
-    userProfileImage:'@/assets/images/favicon.png',
-    userName:'ishaq belhadj',
-    title:'aiof whfewo fowfw of wfwe',
-    videoUrl:'@/assets/images/video.png'
-  },
-  {
-    id:3,
-    userProfileImage:'@/assets/images/favicon.png',
-    userName:'ishaq belhadj',
-    title:'aiof whfewo fowfw of wfwe',
-    videoUrl:'@/assets/images/video.png'
-  },
-  {
-    id:4,
-    userProfileImage:'@/assets/images/favicon.png',
-    userName:'ishaq belhadj',
-    title:'aiof whfewo fowfw of wfwe',
-    videoUrl:'@/assets/images/video.png'
-  },
-]
 
 const Home = () => {
-  const [searchText, setsearchText] = React.useState('');
+  const [searchText, setsearchText] = useState('');
+
+  const {data:posts} = useAppwrite(getAllPosts)
+
   return (
     <ThemedView style={styles.container}>
-      <ThemedView style={styles.header}>
+      <StatusBar backgroundColor='#161622' style='light'/>
+          
+      <FlatList 
+        ListHeaderComponent={()=>(
+          <ThemedView>
+            <ThemedView style={styles.header}>
         <ThemedView>
           <ThemedText type='default' lightColor='#CDCDE0' darkColor='#CDCDE0'>Welcome Back</ThemedText>
           <ThemedText type='defaultSemiBold' lightColor='white' darkColor='white'>Ishaq Belhdj</ThemedText>
@@ -53,6 +36,7 @@ const Home = () => {
         <TextInput 
           style={styles.input}
           onChangeText={text => setsearchText(text)}
+         
           value={searchText}
           inputMode="text"
           selectionColor={Colors.light.primary}
@@ -61,8 +45,12 @@ const Home = () => {
         />
         <Ionicons name='search' size={15} color={'#FFFFFF'}/>
       </ThemedView>
-      <FlatList 
-        data={data}
+      
+      <Trending  posts={posts}/>
+      
+          </ThemedView>
+        )}
+        data={posts}
         renderItem={({item}) =><Post post={item}/>}
         
       />
@@ -77,7 +65,7 @@ export default Home
 const styles = StyleSheet.create({
     container: {
     flex: 1,
-    paddingTop:StatusBar.currentHeight + 48,
+    paddingTop:RNStatusBar.currentHeight + 48,
     paddingHorizontal:16
   },
   header:{
