@@ -1,19 +1,11 @@
 import { FlatList, StyleSheet, Text, View, ViewToken } from 'react-native'
 import React, { useState } from 'react'
 import TrendingPost from './TrendingPost'
-type postProps ={
-  $id:string,
-  avatar:string,
-  username:string,
-  title:string,
-  prompt:string,
-  video:string,
-  thumbnail:string
-  
+import { Models } from 'react-native-appwrite'
 
-}
-const Trending = ({posts}:{posts:postProps[]}) => {
-    const [activeItem, setActiveItem] = useState('')
+const Trending = ({posts}:{posts:Models.Document[]}) => {
+
+    const [activeItem, setActiveItem] = useState(posts[0]?.$id ?? "")
     
     
    

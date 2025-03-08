@@ -6,6 +6,7 @@ import { useVideoPlayer, VideoView } from 'expo-video'
 
 import play from '../assets/images/play.png';
 import { useEvent } from 'expo'
+import { Models } from 'react-native-appwrite';
 
 type postProps ={
   $id:string,
@@ -18,25 +19,26 @@ type postProps ={
 
 }
 
-const zoomIn ={
-    0:{
-        scale:0.9,
-    },
-    1:{
-        scale:1,
-    }
-}
+const zoomIn = {
+  from: {
+    transform: [{ scale: 0.9 }]
+  },
+  to: {
+    transform: [{ scale: 1 }]
+  }
+};
 
-const zoomOut ={
-    0:{
-        scale:1,
-    },
-    1:{
-        scale:0.9,
-    }
-}
+const zoomOut = {
+  from: {
+    transform: [{ scale: 1 }]
+  },
+  to: {
+    transform: [{ scale: 0.9 }]
+  }
+};
 
-const TrendingPost = ({post,activeItem}:{post:postProps,activeItem:string}) => {
+
+const TrendingPost = ({post,activeItem}:{post:Models.Document,activeItem:string}) => {
      const player = useVideoPlayer(post.video, player => {
         player.loop = true;
         player.pause();

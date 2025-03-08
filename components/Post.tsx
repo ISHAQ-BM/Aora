@@ -2,12 +2,11 @@ import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-n
 import React, { useState } from 'react'
 import { ThemedView } from './ThemedView'
 import { ThemedText } from './ThemedText'
-
-import { Ionicons } from '@expo/vector-icons'
 import { Colors } from '@/constants/Colors'
 import { useVideoPlayer, VideoView } from 'expo-video'
 import { useEvent } from 'expo'
 import play from '../assets/images/play.png'
+import { Models } from 'react-native-appwrite'
 
 
 type postProps ={
@@ -31,7 +30,7 @@ type User ={
 }
 
 
-const Post = ({post} :{post:postProps} ) => {
+const Post = ({post} :{post:Models.Document} ) => {
   const player = useVideoPlayer(post.video, player => {
     player.loop = true;
     player.pause();

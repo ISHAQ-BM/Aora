@@ -8,7 +8,6 @@ import { Colors } from '@/constants/Colors'
 import Post from '@/components/Post'
 import { StatusBar } from 'expo-status-bar'
 import { getAllPosts } from '@/lib/appwrite'
-import { Models } from 'react-native-appwrite'
 import useAppwrite from '@/lib/useAppwrite'
 import Trending from '@/components/Trending'
 
@@ -18,6 +17,8 @@ const Home = () => {
 
   const {data:posts} = useAppwrite(getAllPosts)
 
+ 
+  
   return (
     <ThemedView style={styles.container}>
       <StatusBar backgroundColor='#161622' style='light'/>
@@ -65,7 +66,7 @@ export default Home
 const styles = StyleSheet.create({
     container: {
     flex: 1,
-    paddingTop:RNStatusBar.currentHeight + 48,
+    paddingTop: (RNStatusBar.currentHeight ?? 0)  + 48,
     paddingHorizontal:16
   },
   header:{
